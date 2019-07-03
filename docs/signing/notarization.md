@@ -8,6 +8,20 @@ A machine list is [here](https://github.com/escapewindow/scriptworker-scripts/wi
 
 We're working on adding deployment support to [ronin-puppet](https://github.com/mozilla-platform-ops/ronin_puppet/). Currently we need to ssh in to debug and deploy fixes.
 
+## General workflow
+
+IScript will:
+
+- extract the files from a dmg
+- sign widevine and omnija (autograph signing)
+- sign mac, without the mac signing servers
+- create a zipfile of the .app files
+- send that zipfile to Apple for notarization
+- poll Apple for notarization status
+- on success, "staple" the notarization to the app
+- create tarballs of the .app files
+- create .pkg installers and sign them
+
 ## Debugging
 
 The code used is [here](https://github.com/escapewindow/scriptworker-scripts/tree/master/iscript).
